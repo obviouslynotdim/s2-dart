@@ -76,7 +76,7 @@ void main() {
 
   var order1 = Order(
     customer: c1,
-    items: [OrderItem(product: p1, quantity: 2)],
+    items: [OrderItem(product: p1, quantity: 2), OrderItem(product: p3, quantity: 1)],
     type: DeliveryType.DELIVERY,
     address: '6767 Phnom Penh',
   );
