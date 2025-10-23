@@ -1,0 +1,31 @@
+{
+  "id": "e0a6d1c9-7d43-4b6e-82f5-b6d4e8c1a9f0",
+  "questions": [
+    {
+      "id": "f1b7e0d3-2c9a-4f51-8b2d-3c0e9a7f5d4b",
+      "title": "3 + 3 = ?",
+      "choices": ["2", "3", "6"],
+      "goodChoice": "6",
+      "points": 50
+    },
+    {
+      "id": "a9c8b7e6-1d2f-3a4e-5c6b-7d8a9e0f1g2h",
+      "title": "2 + 2 = ?",
+      "choices": ["2", "4", "5"],
+      "goodChoice": "4",
+      "points": 50
+    }
+  ],
+  "answers": [
+    {
+      "id": "b3d5f7h9-1j2k-3l4m-5n6o-7p8q9r0s1t2u",
+      "questionId": "f1b7e0d3-2c9a-4f51-8b2d-3c0e9a7f5d4b",
+      "answerChoice": "6"
+    },
+    {
+      "id": "c4e6g8j0-2k3l-4m5n-6o7p-8q9r0s1t2u3v",
+      "questionId": "a9c8b7e6-1d2f-3a4e-5c6b-7d8a9e0f1g2h",
+      "answerChoice": "5"
+    }
+  ]
+}
