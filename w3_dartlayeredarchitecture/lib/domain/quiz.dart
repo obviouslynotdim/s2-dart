@@ -1,26 +1,23 @@
 import 'package:uuid/uuid.dart';
 
-const _uuid = Uuid();
+final _uuid = Uuid();
 
-// Add toJson to quiz.dart
-
-// == Question class ==
+// Question Class
 class Question {
   final String id;
   final String title;
   final List<String> choices;
   final String goodChoice;
-  final int points; // add points
+  final int points;
 
   Question({
     required this.title,
     required this.choices,
     required this.goodChoice,
     required this.points,
-    String? id, // optional ID for reconstruction, otherwise generate
-  }) : this.id = id ?? _uuid.v4(); 
+    String? id, // id reconstruction
+  }) : id = id ?? _uuid.v4(); // generate uuid if id is null
 
-  // ADDED: toJson() method for Question
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -32,101 +29,138 @@ class Question {
   }
 }
 
-// == Answer Class ==
+// Answer Class
 class Answer {
   final String id;
   final String questionId;
   final String answerChoice;
+  final String userId;
 
   Answer({
-    required this.questionId, 
+    required this.questionId,
     required this.answerChoice,
+    required this.userId,
     String? id,
-  }) : this.id = id ?? _uuid.v4();
-
-  // The isGood() logic will now depend on the Quiz class to retrieve the Question.
+  }) : id = id ?? _uuid.v4();
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
       'questionId': questionId,
       'answerChoice': answerChoice,
+      'userId': userId,
     };
+  }
+
+  // Check if this answer is correct
+  bool isGood(Question question) {
+    return answerChoice.trim().toLowerCase() ==
+        question.goodChoice.trim().toLowerCase();
   }
 }
 
-// == Quiz Class ==
+// Quiz Class
 class Quiz {
   final String id;
-  List<Question> questions;
-  List<Answer> answers = [];
+  final List<Question> questions;
+  final List<Answer> answers; // stores all submitted answers from all players
+  final Map<String, String> players = {};
 
-  Quiz({
-    required this.questions,
-    String? id,
-    List<Answer>? answers,
-  }) : this.id = id ?? _uuid.v4() {
-    if (answers != null) {
-      this.answers = answers;
-    }
+  Quiz({required this.questions, List<Answer>? answers, String? id})
+      : id = id ?? _uuid.v4(),
+        answers = answers ?? [];
+
+  void addAnswer(Answer answer, String playerName) {
+    answers.add(answer);
+    players[answer.userId] = playerName; // Store ID -> Name mapping
   }
 
-  void addAnswer(Answer answer) {
-    this.answers.add(answer);
+  void addPlayer(Player player) {
+    players[player.id] = player.name; // ensures player name exists
   }
 
-  // New Getter: Retrieve a question from its ID
+  // getter to retrieve a question by its ID
   Question? getQuestionById(String id) {
     try {
       return questions.firstWhere((q) => q.id == id);
-    } catch (e) {
-      return null; // return null if not found
-    }
-  }
-
-  // New Getter: Retrieve an answer from its ID
-  // (Less crucial for the current logic, but good for completeness)
-  Answer? getAnswerById(String id) {
-    try {
-      return answers.firstWhere((a) => a.id == id);
     } catch (e) {
       return null;
     }
   }
 
-  int getScoreInPoints() {
+  // retrieve answers submitted by a specific user
+  List<Answer> getAnswersByUserId(String userId) {
+    return answers.where((a) => a.userId == userId).toList();
+  }
+
+  // calculate total points for quiz
+  int get totalPoints {
+    return questions.fold(0, (sum, q) => sum + q.points);
+  }
+
+  int getScoreInPoints(String userId) {
     int score = 0;
-    for (Answer answer in answers) {
-      final question = getQuestionById(answer.questionId); // Get question by ID
-      
-      // Check if the question exists and the answer is correct
-      if (question != null && answer.answerChoice == question.goodChoice) {
+    final userAnswers = getAnswersByUserId(userId);
+
+    for (final answer in userAnswers) {
+      final question = getQuestionById(answer.questionId);
+      if (question != null && answer.isGood(question)) {
+        // use isGood()
         score += question.points;
       }
     }
     return score;
   }
 
-  int getScoreInPercentage() {
-    int totalPoints = 0;
-    for (var q in questions) {
-      totalPoints += q.points;
-    }
-    
-    // Avoid division by zero
-    if (totalPoints == 0) return 0; 
-    
-    int scorePoints = getScoreInPoints();
-    // Use `round()` for more precise rounding to nearest integer
-    return ((scorePoints / totalPoints) * 100).round(); 
+  int getScoreInPercentage(String userId) {
+    final points = getScoreInPoints(userId);
+    if (totalPoints == 0) return 0;
+    return ((points / totalPoints) * 100).round();
   }
 
-  // this method recursively calls toJson() on its list properties (questions and answers).
+  void printAllScores() {
+    final userIds = answers.map((a) => a.userId).toSet();
+    if (userIds.isEmpty) {
+      print('No scores yet.');
+      return;
+    }
+    userIds.forEach((id) {
+      final playerName = players[id] ?? 'Unknown Player ($id)';
+      final score = getScoreInPoints(id);
+      print('Player: $playerName\tScore: $score\t"ID: $id"');
+    });
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'questions': questions.map((q) => q.toJson()).toList(), // Map List<Question> to List<Map>
-      'answers': answers.map((a) => a.toJson()).toList(),     // Map List<Answer> to List<Map>
+      'questions': questions.map((q) => q.toJson()).toList(),
+      'answers': answers.map((a) => a.toJson()).toList(),
     };
   }
+}
+
+// Player Class
+class Player {
+  final String id;
+  final String name;
+  final Quiz quiz;
+
+  Player({
+    required this.name,
+    required this.quiz,
+    String? id,
+  }) : id = id ?? _uuid.v4();
+
+  void addAnswer(String questionId, String answerChoice) {
+    final answer = Answer(
+      questionId: questionId,
+      answerChoice: answerChoice,
+      userId: id,
+    );
+    quiz.addAnswer(answer, name);
+  }
+
+  int getScoreInPoints() => quiz.getScoreInPoints(id);
+  int getScoreInPercentage() => quiz.getScoreInPercentage(id);
 }
