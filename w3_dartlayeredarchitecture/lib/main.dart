@@ -1,32 +1,24 @@
-import 'dart:io';
 import 'domain/quiz.dart';
 import 'ui/quiz_console.dart';
-import 'data/quiz_repository.dart';
 
 void main() {
-  // define path in ur JSON file
-  const String quizFilePath = 'quiz_data.json';
+  List<Question> questions = [
+    Question(
+      title: "3 + 3 = ?",
+      choices: ["2", "3", "6"],
+      goodChoice: "6",
+      points: 50,
+    ),
+    Question(
+      title: "2 + 2 = ?",
+      choices: ["2", "4", "5"],
+      goodChoice: "4",
+      points: 50,
+    ),
+  ];
 
-  try {
-    // instantiate the repository
-    QuizRepository repository = QuizRepository(quizFilePath);
+  Quiz quiz = Quiz(questions: questions);
+  QuizConsole console = QuizConsole(quiz: quiz);
 
-    // load the Quiz from the JSON file
-    Quiz quiz = repository.readQuiz();
-
-    print('Quiz "${quiz.id}" loaded with ${quiz.questions.length} questions.');
-
-    // the previous questions list is now loaded from the JSON
-    // the hardcoded list is no longer needed:
-    // List<Question> questions = [...]
-
-    QuizConsole console = QuizConsole(quiz: quiz);
-    console.startQuiz();
-
-    } on FileSystemException catch (e) {
-    print('Error: Could not read quiz file. Make sure $quizFilePath exists.');
-    print(e);
-  } catch (e) {
-    print('An error occurred while loading the quiz: $e');
-  }
+  console.startGame();
 }
