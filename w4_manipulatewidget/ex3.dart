@@ -7,7 +7,7 @@ void main() {
         backgroundColor: Colors.grey[350],
         body: Center(
           child: Padding(
-            padding: const EdgeInsets.all(30), // 👈 Added padding here
+            padding: const EdgeInsets.all(30),
             child: Column(
               children: [
                 Container(
@@ -49,7 +49,8 @@ void main() {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(45),
-                    color: Colors.blue[600],
+                    gradient: LinearGradient(colors: [Colors.blue[300]!, Colors.blue[900]!]),
+                  
                   ),
                 ),
               ],
