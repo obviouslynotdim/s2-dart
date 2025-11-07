@@ -7,7 +7,7 @@ class HospitalUI {
 
   void start() {
     while(true){
-      print('\nWelcome to Lop Lop Hospital');
+      print('\nWelcome to Our Hospital');
       print('1. Add New Staff');
       print('2. Delete Staff');
       print('3. View All Staffs');
@@ -221,3 +221,4 @@ class HospitalUI {
     }
   }
 }
+
