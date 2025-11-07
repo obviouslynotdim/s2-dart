@@ -68,7 +68,7 @@ class Nurse{
 
   @override
   String toString() {
-    return 'Nurse(id: $id, name: $name, age: \$$age, salary: $salary)';
+    return 'Nurse(id: $id, name: $name, age: $age, salary: \$$salary)';
   }
 }
 
@@ -101,10 +101,11 @@ class AdminStaff{
 
   @override
   String toString() {
-    return 'Admin(id: $id, name: $name, age: \$$age, salary: $salary)';
+    return 'Admin(id: $id, name: $name, age: $age, salary: \$$salary)';
   }
 }
 void main() {
   HospitalUI().start();
 }
+
 
