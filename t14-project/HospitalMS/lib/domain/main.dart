@@ -34,7 +34,7 @@ class Doctor{
 
   @override
   String toString() {
-    return 'Doctor(id: $id, name: $name, age: \$$age, specialization: $specialization, salary: $salary)';
+    return 'Doctor(id: $id, name: $name, age: $age, specialization: $specialization, salary: \$$salary)';
   }
 
 }
@@ -107,3 +107,4 @@ class AdminStaff{
 void main() {
   HospitalUI().start();
 }
+
