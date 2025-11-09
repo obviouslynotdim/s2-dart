@@ -1,0 +1,51 @@
+{
+  "doctors": [
+    {
+      "id": "D-ED43",
+      "name": "dim",
+      "gender": "M",
+      "email": "dim@gmail.com",
+      "phoneNumber": "012345",
+      "specialization": "General",
+      "fees": 150.0
+    }
+  ],
+  "patients": [
+    {
+      "id": "P-8E2E",
+      "name": "cat",
+      "gender": "F",
+      "disease": "Headache",
+      "email": "cat@gmail.com",
+      "phoneNumber": "024689"
+    }
+  ],
+  "appointments": [
+    {
+      "id": "A-264B6D",
+      "patientId": "P-8E2E",
+      "doctorId": "D-ED43",
+      "dateTime": "2025-11-11T09:10:00.000"
+    }
+  ],
+  "workingHours": [
+    {
+      "doctorId": "D-ED43",
+      "day": "Monday",
+      "startTime": "9:00",
+      "endTime": "17:00"
+    },
+    {
+      "doctorId": "D-ED43",
+      "day": "Tuesday",
+      "startTime": "9:00",
+      "endTime": "17:00"
+    },
+    {
+      "doctorId": "D-ED43",
+      "day": "Friday",
+      "startTime": "9:00",
+      "endTime": "17:00"
+    }
+  ]
+}
