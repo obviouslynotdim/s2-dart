@@ -19,10 +19,10 @@ void main() {
     test('Add and retrieve doctor', () {
       final doctor = Doctor(
         id: 'D-1234',
-        name: 'Dr. Alice',
-        gender: 'F',
+        name: 'Dr. John',
+        gender: 'M',
         email: 'alice@example.com',
-        phoneNumber: '0123456789',
+        phoneNumber: '012880880',
         specialization: 'Cardiology',
         fees: 100.0,
       );
@@ -31,16 +31,16 @@ void main() {
       final doctors = repo.getAllDoctors();
 
       expect(doctors.length, 1);
-      expect(doctors.first.name, 'Dr. Alice');
+      expect(doctors.first.name, 'Dr. John');
     });
 
     test('Add and retrieve patient', () {
       final patient = Patient(
         id: 'P-5678',
-        name: 'Bob',
+        name: 'Dim',
         gender: 'M',
-        email: 'bob@example.com',
-        phoneNumber: '0987654321',
+        email: 'dim@example.com',
+        phoneNumber: '098545602',
         disease: 'Flu',
       );
 
@@ -69,19 +69,19 @@ void main() {
     test('Schedule appointment', () {
       final doctor = Doctor(
         id: 'D-1234',
-        name: 'Dr. Alice',
+        name: 'Dr. Jen',
         gender: 'F',
-        email: 'alice@example.com',
-        phoneNumber: '0123456789',
+        email: 'Jen@example.com',
+        phoneNumber: '012487122',
         specialization: 'Cardiology',
         fees: 100.0,
       );
       final patient = Patient(
         id: 'P-5678',
-        name: 'Bob',
+        name: 'Benz',
         gender: 'M',
-        email: 'bob@example.com',
-        phoneNumber: '0987654321',
+        email: 'benz@example.com',
+        phoneNumber: '091856634',
         disease: 'Flu',
       );
 
@@ -122,27 +122,27 @@ void main() {
     test('Export data to JSON', () {
       final doctor = Doctor(
         id: 'D-1234',
-        name: 'Dr. Alice',
+        name: 'Dr. Jen',
         gender: 'F',
-        email: 'alice@example.com',
-        phoneNumber: '0123456789',
+        email: 'jen123@example.com',
+        phoneNumber: '01224873',
         specialization: 'Cardiology',
         fees: 100.0,
       );
       final patient = Patient(
         id: 'P-5678',
-        name: 'Bob',
+        name: 'Pop',
         gender: 'M',
-        email: 'bob@example.com',
-        phoneNumber: '0987654321',
+        email: 'pop11@example.com',
+        phoneNumber: '097889201',
         disease: 'Flu',
       );
       repo.addDoctor(doctor);
       repo.addPatient(patient);
 
       final json = repo.exportToJson();
-      expect(json.contains('Dr. Alice'), true);
-      expect(json.contains('Bob'), true);
+      expect(json.contains('Dr. Jen'), true);
+      expect(json.contains('Pop'), true);
     });
   });
 }
