@@ -1,0 +1,71 @@
+{
+  "doctors": [
+    {
+      "id": "D-5212",
+      "name": "dim",
+      "gender": "M",
+      "email": "dim@gmail.com",
+      "phoneNumber": "012345",
+      "specialization": "General",
+      "fees": 1500.0
+    },
+    {
+      "id": "D-A15B",
+      "name": "ronan",
+      "gender": "M",
+      "email": "ronan@gmail.com",
+      "phoneNumber": "04433211",
+      "specialization": "General",
+      "fees": 200.0
+    }
+  ],
+  "patients": [
+    {
+      "id": "P-9C90",
+      "name": "cat",
+      "gender": "F",
+      "email": "cat@yahoo.com",
+      "phoneNumber": "0246888"
+    }
+  ],
+  "appointments": [
+    {
+      "id": "A-16C959",
+      "patientId": "P-9C90",
+      "doctorId": "D-5212",
+      "dateTime": "2025-11-11T14:00:00.000"
+    }
+  ],
+  "workingHours": [
+    {
+      "doctorId": "D-5212",
+      "day": "Monday",
+      "startTime": "9:00",
+      "endTime": "17:00"
+    },
+    {
+      "doctorId": "D-5212",
+      "day": "Tuesday",
+      "startTime": "9:00",
+      "endTime": "17:00"
+    },
+    {
+      "doctorId": "D-5212",
+      "day": "Wednesday",
+      "startTime": "9:00",
+      "endTime": "17:00"
+    },
+    {
+      "doctorId": "D-5212",
+      "day": "Thursday",
+      "startTime": "9:00",
+      "endTime": "17:00"
+    },
+    {
+      "doctorId": "D-5212",
+      "day": "Friday",
+      "startTime": "9:00",
+      "endTime": "17:00"
+    }
+  ]
+}
