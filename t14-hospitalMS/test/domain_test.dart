@@ -19,7 +19,7 @@ void main() {
     test('Add and retrieve doctor', () {
       final doctor = Doctor(
         id: 'D-1234',
-        name: 'Dr. John',
+        name: 'Dr. JC',
         gender: 'M',
         email: 'alice@example.com',
         phoneNumber: '012880880',
@@ -31,7 +31,7 @@ void main() {
       final doctors = repo.getAllDoctors();
 
       expect(doctors.length, 1);
-      expect(doctors.first.name, 'Dr. John');
+      expect(doctors.first.name, 'Dr. JC');
     });
 
     test('Add and retrieve patient', () {
@@ -146,3 +146,4 @@ void main() {
     });
   });
 }
+
