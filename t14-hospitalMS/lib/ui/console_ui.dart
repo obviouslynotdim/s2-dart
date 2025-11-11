@@ -106,7 +106,7 @@ class ConsoleUI {
   void _doctorMenu() {
     int choice;
     do {
-      print('\n--- Doctor Menu ---');
+      print('\n=== Doctor Menu ===');
       print('1. Add Doctor');
       print('2. View All Doctors (with Working Hours)');
       print('3. Assign/Update Doctor Working Hours');
@@ -176,7 +176,7 @@ class ConsoleUI {
       print('No doctors found.');
       return;
     }
-    print('\n== Registered Doctors ==');
+    print('\n== Registered Doctors (${doctors.length}) ==');
     for (var d in doctors) {
       d.displayInfo();
       // Display their working hours
@@ -391,9 +391,10 @@ class ConsoleUI {
       print('No patients found.');
       return;
     }
-    print('\n--- Registered Patients ---');
+    print('\n== Registered Patients (${patients.length}) ==');
     for (var p in patients) {
       p.displayInfo();
+      print('-------------------------');
     }
   }
 
@@ -433,7 +434,7 @@ class ConsoleUI {
   void _appointmentMenu() {
     int choice;
     do {
-      print('\n--- Appointment Menu ---');
+      print('\n=== Appointment Menu ===');
       print('1. Schedule Appointment');
       print('2. View Doctor Schedule');
       print('3. View Patient Appointments');
