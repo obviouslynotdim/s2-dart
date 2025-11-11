@@ -12,6 +12,7 @@ class Patient extends Person {
     required this.disease,
   });
 
+  @override
   void displayInfo() {
     super.displayInfo();
     print('Disease: $disease');
@@ -35,7 +36,17 @@ class Patient extends Person {
       phoneNumber: phoneNumber ?? this.phoneNumber,
     );
   }
-
+  
+  @override
+  Map<String, dynamic> toJson() {
+    // get all the common fields from the Person class
+    final map = super.toJson();
+    // add the fields to specific to Patient
+    map.addAll({
+      'disease': disease,
+    });
+    return map;
+  }
   factory Patient.fromJson(Map<String, dynamic> json) => Patient(
         id: json['id'] as String? ?? '',
         name: json['name'] as String? ?? '',
