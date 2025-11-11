@@ -25,7 +25,16 @@
       "name": "cat",
       "gender": "F",
       "email": "cat@yahoo.com",
-      "phoneNumber": "0246888"
+      "phoneNumber": "0246888",
+      "disease": "Flu"
+    },
+    {
+      "id": "P-3161",
+      "name": "Jacky",
+      "gender": "M",
+      "email": "jacky@gmail.com",
+      "phoneNumber": "066778899",
+      "disease": "Headache"
     }
   ],
   "appointments": [
