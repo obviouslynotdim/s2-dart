@@ -81,7 +81,7 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
               ),
               // text for output
               child: Text(
-                fahrenheit.isEmpty ? "..." : fahrenheit,
+                fahrenheit.isEmpty ? "0" : fahrenheit,
                 style: const TextStyle(fontSize: 18),
               ),
             ),
@@ -91,3 +91,4 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
     );
   }
 }
+
