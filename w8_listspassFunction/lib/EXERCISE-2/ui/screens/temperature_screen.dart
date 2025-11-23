@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 
-class TemperatureScreen extends StatelessWidget {
-  TemperatureScreen({super.key});
+class TemperatureScreen extends StatefulWidget {
+  // make screen stateful
+  const TemperatureScreen({super.key});
+
+  @override
+  State<TemperatureScreen> createState() => _TemperatureScreenState();
+}
+
+class _TemperatureScreenState extends State<TemperatureScreen> {
+  // state variables: read what user type
+  final TextEditingController controller = TextEditingController();
+  String fahrenheit = "";
 
   final InputDecoration inputDecoration = InputDecoration(
     enabledBorder: OutlineInputBorder(
@@ -11,6 +21,23 @@ class TemperatureScreen extends StatelessWidget {
     hintText: 'Enter a temperature',
     hintStyle: const TextStyle(color: Colors.white),
   );
+
+  // convert string to number, if work return work else return null -> safe(wont crash)
+  void convertToFahrenheit(String value) {
+    double? celsius = double.tryParse(value);
+
+    if (celsius == null) {
+      setState(() {
+        fahrenheit = "Invalid input";
+      });
+      return;
+    }
+
+    double f = (celsius * 9 / 5) + 32;
+    setState(() {
+      fahrenheit = f.toStringAsFixed(2);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +63,12 @@ class TemperatureScreen extends StatelessWidget {
             const Text("Temperature in Degrees:"),
             const SizedBox(height: 10),
             TextField(
+              // 
+              controller: controller, // current input
               decoration: inputDecoration,
               style: const TextStyle(color: Colors.white),
+              keyboardType: TextInputType.number, // phone keypad
+              onChanged: convertToFahrenheit,
             ),
             const SizedBox(height: 30),
             const Text("Temperature in Fahrenheit:"),
@@ -48,7 +79,11 @@ class TemperatureScreen extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: const Text('test'),
+              // text for output
+              child: Text(
+                fahrenheit.isEmpty ? "..." : fahrenheit,
+                style: const TextStyle(fontSize: 18),
+              ),
             ),
           ],
         ),
