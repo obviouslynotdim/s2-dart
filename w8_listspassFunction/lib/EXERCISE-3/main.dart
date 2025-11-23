@@ -7,6 +7,6 @@ import 'ui/screens/profile.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: ProfileApp(profile: ronanProfile,),
+    home: ProfileApp(profile: dimProfile,),
   ));
 }
