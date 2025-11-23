@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../model/profile_title_model.dart';
 
-ProfileData ronanProfile = ProfileData(
+ProfileData dimProfile = ProfileData(
   name: "Setha Vathanak",
   position: "Flutter Developer",
   avatarUrl: 'assets/images/w8/cat.png',
@@ -17,3 +17,4 @@ ProfileData ronanProfile = ProfileData(
     TileData(icon: Icons.language, title: "Languages", value: "Khmer, Japanese, English"),
   ],
 );
+
