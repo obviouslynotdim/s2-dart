@@ -18,7 +18,7 @@ class AnswerButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(25),
         onTap: onTap,
         child: Container(
-          width: double.infinity, // stretch full width
+          width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 18),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -37,3 +37,4 @@ class AnswerButton extends StatelessWidget {
     );
   }
 }
+
